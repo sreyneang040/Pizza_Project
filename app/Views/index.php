@@ -94,17 +94,17 @@
         <div class="modal-body text-right">
 			<form  action="dashboard/updatePizza" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" name="name" value="<?= $pizzaList['name']?>">
+					<input type="text" class="form-control" name="name">
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" name = "prize" value="<?= $pizzaList['prize']?>">
+					<input type="number" class="form-control" name = "prize">
 				</div>
 				<div class="form-group">
-					<textarea class="form-control" name = "ingredients" value="<?= $pizzaList['ingredients']?>"></textarea>
+					<textarea class="form-control" name = "ingredients"></textarea>
 				</div>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 			  &nbsp;
-			  <input type="hidden" name = "id" value="<?= $pizzaList['id']?>">
+			  <input type="hidden" name = "id">
 		  <input type="submit" value="UPDATE" class="createBtn text-warning">
         </div>
         </form>

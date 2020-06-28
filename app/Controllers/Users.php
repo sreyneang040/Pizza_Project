@@ -9,11 +9,16 @@ class Users extends BaseController
 		$data = [];
 		if($this->request->getMethod() == "post"){
 			$rules = [
-				'email' => 'required',
-				'password' => 'required'
+				'email' => 'required|valid_email',
+				'password' => 'required|validatUser[email,password]'
+			];
+			$errors = [
+				'password' => [
+					'validatUser' => 'You don\'t have account yet!! Please Register Now'
+				]
 			];
 
-			if(!$this->validate($rules)){
+			if(!$this->validate($rules,$errors)){
 				$data['validation'] = $this->validator;
 			}else{
 				$pizza = new UserModel();
