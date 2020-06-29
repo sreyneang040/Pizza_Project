@@ -24,6 +24,8 @@ class Users extends BaseController
 				$pizza = new UserModel();
 				$user = $pizza->where('email',$this->request->getVar('email'))
 							  ->first();
+				$user = $pizza->where('password',$this->request->getVar('password'))
+							  ->first();
 				$this->setUserSession($user);
 				// direct to rout dashboard
 				return redirect()->to('dashboard');
@@ -37,8 +39,8 @@ class Users extends BaseController
 			'id' => $user['id'],
 			'email' => $user['email'],
 			'password' => $user['password'],
-			// 'address' => $user['address'],
-			// 'role' => $user['role'],
+			'address' => $user['address'],
+			'role' => $user['role'],
 		];
 
 		session()->set($data);
@@ -53,10 +55,9 @@ class Users extends BaseController
 
 		if($this->request->getMethod() == "post"){
 			$rules = [
-				'email' => 'required',
+				'email' => 'required|valid_email',
 				'password' => 'required',
 				'address' => 'required',
-				'role' => 'required'
 			];
 			if(!$this->validate($rules)){
 				$data['validation'] = $this->validator;

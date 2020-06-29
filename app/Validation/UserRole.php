@@ -8,6 +8,8 @@ class UserRole{
         $pizza = new UserModel();
         $user = $pizza->where('email',$data['email'])
                         ->first();
+        $user = $pizza->where('password',$data['password'])
+                        ->first();
     
         if($user)
             return true;

@@ -22,12 +22,12 @@
           </div>
           <div class="form-group">
             <label class="text-uppercase small">Address</label>
-            <textarea name="address"  class="form-control" placeholder="Address" value="<?= set_value('password') ?>"></textarea>
+            <textarea name="address"  class="form-control" placeholder="Address" value="<?= set_value('address') ?>"></textarea>
           </div>
           <div class="form-check">
-            <label class="form-check-label">Role </label>
-            <input type="text" class="form-control" name="role" id="role" value="<?= set_value('role') ?>"> 
-                <!-- <input type="checkbox" class="form-check-input" value="">I'm a manager -->
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="1" name = "role">I'm a manager
+            </label>
           </div><br>
           <?php if(isset($validation)) :?>
         <div class="col-12">
