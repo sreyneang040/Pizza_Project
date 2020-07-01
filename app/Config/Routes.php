@@ -34,9 +34,15 @@ $routes->get('/', 'Users::index');
 $routes->get('logout', 'Users::logout');
 $routes->match(['get','post'],'register','Users::register');
 
-$routes->get('dashboard','Dashboard::index');
-$routes->get('delete/(:num)','Dashboard::deletePizza/$1');
-$routes->get('edit/(:num)','Dashboard::editPizza/$1');
+$routes->group('dashboard', function($routes)
+{
+	$routes->add('/','Dashboard::index');
+	$routes->add('add','Dashboard::addPizza');
+	$routes->add('update','Dashboard::updatePizza');
+	$routes->add('delete/(:num)','Dashboard::deletePizza/$1');
+	$routes->add('edit/(:num)','Dashboard::editPizza/$1');
+
+});
 
 /**
  * --------------------------------------------------------------------

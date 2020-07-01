@@ -23,7 +23,7 @@
 						<th>Status</th>
 					<?php endif ?>
 					</tr>
-					<?php foreach($listPizza as $key => $pizza) : ?>
+					<?php foreach($pizzas as $pizza) : ?>
 					<tr>
 						<td class="hide"><?= $pizza['id']; ?></td>
 						<td class="pizzaName"><?= $pizza['name']; ?></td>
@@ -32,7 +32,7 @@
 						<?php if(session()->get('role') == 1):?>
 						<td>
 							<a href="/edit/<?= $pizza['id'] ?>" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
-							<a href="/delete/<?= $pizza['id'] ?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
+							<a href="dashboard/delete/<?= $pizza['id'] ?>" data-toggle="tooltip" title="Delete Pizza!" data-placement="right"><i class="material-icons text-danger">delete</i></a>
 						</td>
 						<?php endif ?>
 					</tr>
@@ -58,7 +58,7 @@
         
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="dashboard/addPizza" method="post">
+			<form  action="dashboard/add" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" name="name" placeholder="Pizza name">
 				</div>
@@ -68,19 +68,18 @@
 				<div class="form-group">
 					<textarea placeholder="Ingredients" name="ingredients" class="form-control"></textarea>
 				</div>
-				
-			<a data-dismiss="modal" class="closeModal">DISCARD</a>
-		 	 &nbsp;
-		  <input type="submit" value="CREATE" class="createBtn text-warning">
-        </div>
-        </form>
-		<?php if(isset($validation)) :?>
+				<?php if(isset($validation)) :?>
         <div class="col-12">
           <div class="alert alert-danger" role="alert">
             <?= $validation->listErrors(); ?>
           </div>
         </div>
       <?php endif; ?>
+			<a data-dismiss="modal" class="closeModal">DISCARD</a>
+		 	 &nbsp;
+		  <input type="submit" value="CREATE" class="createBtn text-warning">
+        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -99,7 +98,7 @@
         </div>
         <!-- Modal body -->
         <div class="modal-body text-right">
-			<form  action="dashboard/updatePizza" method="post">
+			<form  action="dashboard/update" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" name="name" id = "name">
 				</div>
@@ -129,7 +128,7 @@
 				return $(this).text();
 
 			}).get();
-			
+
 			$('#id').val(data[0]);
 			$('#name').val(data[1]);
 			$('#ingredients').val(data[2]);

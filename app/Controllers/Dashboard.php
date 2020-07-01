@@ -6,26 +6,23 @@ class Dashboard extends BaseController
 	public function index()
 	{	
 		$pizza = new PizzaModel();
-		$data['listPizza'] = $pizza->findAll();
+		$data['pizzas'] = $pizza->findAll();
 		return view('index',$data);
 	}
 	// add pizza to table pizza
 	public function addPizza(){
-		helper(['form']);
 		$data = [];
 		if($this->request->getMethod() == "post"){
+			helper(['form']);
 			$rules = [
-				'name'=>'alpha_space|required',
-				'prize'=>'required|numeric|max_length[50]|min_length[1]|numeric',
-				'ingredients'=>'required'
+				'name'=>'required',
+				'prize'=>'required|numeric|max_length[50]|min_length[1]',
 			];
-			// if differnt from rule above it will diplay error message
 		    if(!$this->validate($rules)){
 				$data['validation'] = $this->validator;
 				return redirect()->to("/dashboard");
 			}
-			// insert data to table
-			else{			
+			else{
 				$pizza = new PizzaModel();
 				$pizzaData = array(
 					'name'=>$this->request->getVar('name'),
@@ -36,7 +33,7 @@ class Dashboard extends BaseController
 				return redirect()->to("/dashboard");
 			}
 	    }	
-		return view('index',$data);
+		return view("index",$data);
 	}
 
 	// edit pizza data
