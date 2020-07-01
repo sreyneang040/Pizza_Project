@@ -15,5 +15,10 @@ class PizzaModel extends Model{
             'ingredients' => $pizzaInfo['ingredients'],
         ]);
     }
+    // public function edit($id){
+    //     $this->db->where("id", $id);
+    //     $query = $this->db->get("pizza_info");
+    //     return $query->result();
+    // }
 
 }

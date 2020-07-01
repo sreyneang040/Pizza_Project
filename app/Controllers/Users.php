@@ -2,7 +2,7 @@
 use App\Models\UserModel;
 class Users extends BaseController
 {
-	// set login
+	// login form 
 	public function index()
 	{
 		helper(['form']);
@@ -27,13 +27,12 @@ class Users extends BaseController
 				$user = $pizza->where('password',$this->request->getVar('password'))
 							  ->first();
 				$this->setUserSession($user);
-				// direct to rout dashboard
 				return redirect()->to('dashboard');
 			}
 		}
 		return view('auths/login',$data);
 	}
-
+	// set role to user 
 	public function setUserSession($user){
 		$data = [
 			'id' => $user['id'],
@@ -45,14 +44,13 @@ class Users extends BaseController
 
 		session()->set($data);
 		return true;
-	}	
-// register before login
+	}
+
+	// register account before login
 	public function register()
 	{
 		helper(['form']);
-
 		$data = [];
-
 		if($this->request->getMethod() == "post"){
 			$rules = [
 				'email' => 'required|valid_email',
@@ -76,12 +74,10 @@ class Users extends BaseController
 				$session->setFlashdata('success','successful Register');
 				return redirect()->to('/');
 			}
-
 		}
-
 		return view('auths/register',$data);
 	}
-
+	// back to login form
 	public function logout(){
 		session()->destroy();
 		return redirect()->to('/');

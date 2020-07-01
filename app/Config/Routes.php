@@ -33,8 +33,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Users::index');
 $routes->get('logout', 'Users::logout');
 $routes->match(['get','post'],'register','Users::register');
-$routes->get('dashboard','Dashboard::index');
 
+$routes->get('dashboard','Dashboard::index');
 $routes->get('delete/(:num)','Dashboard::deletePizza/$1');
 $routes->get('edit/(:num)','Dashboard::editPizza/$1');
 
