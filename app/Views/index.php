@@ -60,21 +60,21 @@
         <div class="modal-body text-right">
 			<form  action="dashboard/add" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" name="name" placeholder="Pizza name">
+					<input type="text" class="form-control" name="name" placeholder="Pizza name" required>
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" name="prize" placeholder="Prize in dollars">
+					<input type="number" class="form-control" name="prize" placeholder="Prize in dollars" required>
 				</div>
 				<div class="form-group">
-					<textarea placeholder="Ingredients" name="ingredients" class="form-control"></textarea>
-				</div>
+					<textarea placeholder="Ingredients" name="ingredients" class="form-control" required></textarea>
+				</div><br>
 				<?php if(isset($validation)) :?>
-        <div class="col-12">
-          <div class="alert alert-danger" role="alert">
-            <?= $validation->listErrors(); ?>
-          </div>
-        </div>
-      <?php endif; ?>
+        			<div class="col-12">
+         				<div class="alert alert-danger" role="alert">
+            			<?= $validation->listErrors(); ?>
+          				</div>
+        			</div>
+      			<?php endif; ?>
 			<a data-dismiss="modal" class="closeModal">DISCARD</a>
 		 	 &nbsp;
 		  <input type="submit" value="CREATE" class="createBtn text-warning">
@@ -100,15 +100,22 @@
         <div class="modal-body text-right">
 			<form  action="dashboard/update" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" name="name" id = "name">
+					<input type="text" class="form-control" name="name" id = "name" required>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" name = "prize" id = "prize" >
+					<input type="text" class="form-control" name = "prize" id = "prize" required>
 				</div>
 				<div class="form-group">
-					<textarea class="form-control" name = "ingredients" id ="ingredients"></textarea>
-				</div>
-			<a data-dismiss="modal" class="closeModal">DISCARD</a>
+					<textarea class="form-control" name = "ingredients" id ="ingredients" required></textarea>
+				</div><br>
+				<?php if(isset($validation)) :?>
+        			<div class="col-12">
+         				<div class="alert alert-danger" role="alert">
+            			<?= $validation->listErrors(); ?>
+          				</div>
+        			</div>
+      			<?php endif; ?>
+				<a data-dismiss="modal" class="closeModal">DISCARD</a>
 			  &nbsp;
 			<input type="hidden" name = "id" id = "id">
 		  <input type="submit" value="UPDATE" class="createBtn text-warning">
@@ -118,22 +125,4 @@
     </div>
   </div>
   <!-- =================================END MODEL UPDATE==================================================== -->
-
-  <script>
-	$(document).ready(function(){
-		$('.editPizza').on('click',function(){
-			$('#updatePizza');
-			$tr = $(this).closest('tr');
-			var data = $tr.children('td').map(function(){
-				return $(this).text();
-
-			}).get();
-
-			$('#id').val(data[0]);
-			$('#name').val(data[1]);
-			$('#ingredients').val(data[2]);
-			$('#prize').val(data[3]);
-		});
-	});
-</script>
   <?= $this->endSection() ?>

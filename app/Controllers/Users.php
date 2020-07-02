@@ -10,11 +10,11 @@ class Users extends BaseController
 		if($this->request->getMethod() == "post"){
 			$rules = [
 				'email' => 'required|valid_email',
-				'password' => 'required|validatUser[email,password]'
+				'password' => 'required|validateUser[email,password]'
 			];
 			$errors = [
 				'password' => [
-					'validatUser' => 'You don\'t have account yet!! Please Register Now'
+					'validateUser' => 'You don\'t have account yet!! Please Register Now'
 				]
 			];
 
@@ -69,7 +69,7 @@ class Users extends BaseController
 					'role' => $this->request->getVar('role'),
 				];
 
-				$pizza->save($newData);
+				$pizza->createUsers($newData);
 				$session = session();
 				$session->setFlashdata('success','successful Register');
 				return redirect()->to('/');

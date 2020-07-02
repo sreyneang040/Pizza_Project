@@ -36,11 +36,11 @@ $routes->match(['get','post'],'register','Users::register');
 
 $routes->group('dashboard', function($routes)
 {
-	$routes->add('/','Dashboard::index');
-	$routes->add('add','Dashboard::addPizza');
-	$routes->add('update','Dashboard::updatePizza');
-	$routes->add('delete/(:num)','Dashboard::deletePizza/$1');
-	$routes->add('edit/(:num)','Dashboard::editPizza/$1');
+	$routes->add('/','Pizzas::index');
+	$routes->add('add','Pizzas::addPizza');
+	$routes->add('update','Pizzas::updatePizza');
+	$routes->add('delete/(:num)','Pizzas::deletePizza/$1');
+	$routes->add('edit/(:num)','Pizzas::editPizza/$1');
 
 });
 

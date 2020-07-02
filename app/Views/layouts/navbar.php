@@ -13,8 +13,8 @@
     <ul class="nav navbar-nav ml-auto ">
       <li class="nav-item">
         <a class="nav-link text-uppercase" href="/logout">
-        <?php $username = strstr(session()->get('email'),'@',true) ?>
-            <?= $username ?>        
+        <?php $name = strstr(session()->get('email'),'@',true) ?>
+            <?= $name ?>        
         </a>
         <a class="nav-link text-uppercase" href="/logout">Logout</a>
       </li>

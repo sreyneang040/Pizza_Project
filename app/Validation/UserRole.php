@@ -3,7 +3,7 @@ namespace App\Validation;
 use App\Models\UserModel;
 
 class UserRole{
-    public function validatUser(string $str, string $fields, array $data)
+    public function validateUser( string $str, string $fields,array $data)
     {
         $pizza = new UserModel();
         $user = $pizza->where('email',$data['email'])
@@ -13,7 +13,7 @@ class UserRole{
     
         if($user)
             return true;
-        
+
         return password_verify($data['password'],$user['password']);
     }
 }
