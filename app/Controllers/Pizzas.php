@@ -27,7 +27,7 @@ class Pizzas extends BaseController
 			else{
 				$pizza = new PizzaModel();
 					$name = $this->request->getVar('name');
-					$price = $this->request->getVar('prize');
+					$price = $this->request->getVar('prize')."$";
 					$ingredients = $this->request->getVar('ingredients');
 					$pizzaData = array(
 						'name'=>$name,

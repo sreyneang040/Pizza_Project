@@ -28,7 +28,7 @@
 						<td class="hide"><?= $pizza['id']; ?></td>
 						<td class="pizzaName"><?= $pizza['name']; ?></td>
 						<td><?= $pizza['ingredients']; ?></td>
-						<td class="text-success font-weight-bolder"><?= $pizza['prize'].' $'; ?></td>
+						<td class="text-success font-weight-bolder"><?= $pizza['prize']."$"; ?></td>
 						<?php if(session()->get('role') == 1):?>
 						<td>
 							<a href="/edit/<?= $pizza['id'] ?>" data-toggle="modal" data-target="#updatePizza"><i class="material-icons text-info editPizza" data-toggle="tooltip" title="Edit Pizza!" data-placement="left">edit</i></a>
@@ -63,7 +63,7 @@
 					<input type="text" class="form-control" name="name" placeholder="Pizza name" required>
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" name="prize" placeholder="Prize in dollars" required>
+					<input type="number" class="form-control" name="prize" placeholder="Prize in dollars" min = "1" max = "50" required>
 				</div>
 				<div class="form-group">
 					<textarea placeholder="Ingredients" name="ingredients" class="form-control" required></textarea>
@@ -103,7 +103,7 @@
 					<input type="text" class="form-control" name="name" id = "name" required>
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" name = "prize" id = "prize" required>
+					<input type="text" class="form-control" name = "prize" id = "prize" min = "1" max = "50" required>
 				</div>
 				<div class="form-group">
 					<textarea class="form-control" name = "ingredients" id ="ingredients" required></textarea>
